@@ -3,13 +3,18 @@ import MovieCard from "./MovieCard";
 
 
 
-function MovieList({list}){
+function MovieList({search, moviesData,}){
+    const filtredMovies =moviesData.filter((movie) => {
+        return movie.title.tolowerCase().includes(search.tolowerCase());});
+    
+
     return(
         <div className="MovieList">{
-        list.map( (element,index)=>(
-            <MovieCard key={index} element={element} />
-        ))
-        }
+        filtredMovies.map( (movie)=>{
+            return (
+            <MovieCard key={movie.id} movie={movie} />
+        );
+        })}
         </div>
     );
 }
